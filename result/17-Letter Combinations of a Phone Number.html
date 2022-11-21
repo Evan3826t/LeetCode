@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+        let input = "25"
+        console.log("result is ", main(input))
+        // console.log();
+        function main(digits) {
+            let letter = {'2':"abc",'3':"def",'4':"ghi",'5':"jkl",'6':"mno",'7':"pqrs",'8':"tuv",'9':"wxyz"}
+            let len = digits.length
+            let ans = []
+            const dfs = (pos, str) => {
+                // 最後一碼不需要跑
+                if (pos === len) ans.push(str)
+                else {
+                    let letters = letter[digits[pos]]
+                    console.log(letters);
+                    for (let index = 0; index < letters.length; index++) {
+                        dfs(pos + 1, str + letters[index])
+                    }
+                }
+            }
+            dfs(0, "")
+            return ans
+        }
+    </script>
+</body>
+
+</html>

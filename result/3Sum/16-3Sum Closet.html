@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+        var input = [-1,2,1,-4]
+        console.log("result is ", main(input, 1))
+
+        function main(nums, target) {
+            nums = nums.sort((a, b) => a - b)
+            let min = nums[0] + nums[1] +nums[2]
+            for (let index = 0; index < nums.length; index++) {
+                if (nums[index] == nums[index-1]) continue
+                let tamp = nums[index]
+                let a = index + 1
+                let b = nums.length - 1
+                while( a < b) {
+                    let sum = tamp + nums[a] + nums[b]
+                    if (sum === target) {
+                        return target;
+                    }else if (sum > target) {
+                        if (Math.abs(sum - target) < Math.abs(min - target)) min = sum
+                        b--
+                    } else {
+                        if (Math.abs(sum - target) < Math.abs(min - target)) min = sum
+                        a++
+                    }
+                    
+                }
+            }
+            return min;
+        }
+    </script>
+</body>
+
+</html>

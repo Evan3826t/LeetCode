@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+        var input = [1,0,-1,0,-2,2]
+        console.log("result is ", main(input, 0))
+        // console.log();
+        function main(nums, target) {
+            nums = nums.sort((a, b) => a - b)
+            console.log(nums)
+
+            let res = []
+            for (let index = 0; index < (nums.length - 3); index++) {
+                // 跟前一碼相同不需要再跑一次
+                if (index > 0 && nums[index] === nums[index - 1]) {
+                    continue
+                }
+                for (let j = index+1; j < (nums.length - 2); j++) {
+                    // 跟前一碼相同不需要再跑一次
+                    if (j > index+1 && nums[j] === nums[j - 1]) {
+                        continue
+                    }
+                    let a = j + 1
+                    let b = nums.length - 1
+                    while (a < b) {
+                        let sum = nums[index] + nums[j] + nums[a] + nums[b]
+                        if (sum === target) {
+                            let resSort = [nums[index], nums[j], nums[a], nums[b]]
+                            res.push(resSort)
+                            do {
+                                a++
+                            } while (a < b && nums[a] === nums[a - 1])
+                            do {
+                                b--
+                            } while (a < b && nums[b] === nums[b + 1])
+                        } else if (sum > target) {
+                            b--
+                        } else {
+                            a++
+                        }
+                    }
+                }
+            }
+            return res
+        }
+    </script>
+</body>
+
+</html>

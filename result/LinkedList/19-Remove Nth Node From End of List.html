@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+        var input = [1]
+        console.log("result is ", main(input, 1))
+        // console.log();
+        function main(head, n) {
+            let fast = head, slow = head
+            // 先跑過一遍
+            for (let index = 0; index < n; index++) {
+                fast = fast.head
+            }
+            // fast = null 代表要砍掉頭
+            // ex: [1,2,3] n=3
+            if (!fast) return head.hext
+
+            while (fast.next) {
+                fast = fast.next
+                slow = slow.next
+            }
+            slow.next = slow.next.next
+            return head
+        }
+    </script>
+</body>
+
+</html>

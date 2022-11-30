@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+        var input = [3,2,2,3]
+        console.log("result is ", main(input, 3))
+        // console.log();
+        function main(nums) {
+            if (nums.length <= 0 || nums.indexOf(val) < 0) return 0
+            let count = 0
+            let len = nums.length
+            for (let i = 0; i < len; i++) {
+                if (nums[i] != val) {
+                    nums[count++] = nums[i]
+                }
+            }
+            return count
+        }
+    </script>
+</body>
+
+</html>

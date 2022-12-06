@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+        var input = "hello"
+        var needle = "ll"
+        console.log("result is ", main(input, needle))
+        // console.log();
+        function main(haystack, needle) {
+            let stringLen = needle.length
+            let len = haystack.length - stringLen
+
+            for (let index = 0; index <= len; index++) {
+                let string = haystack
+                let slice = string.substring(index, index + stringLen)
+                if (needle === slice) {
+                    return index
+                }
+
+            }
+            return -1
+        }
+    </script>
+</body>
+
+</html>

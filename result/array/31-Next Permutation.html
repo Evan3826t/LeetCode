@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+        var input = [7, 2, 3, 1, 5, 4, 3, 2, 0]
+        console.log("result is ", main(input))
+        // console.log();
+        function main(nums) {
+            let len = nums.length
+            if (len === 0) {
+                return
+            }
+            // Find the first decreasing index moving from end to start
+            // this example is 1 
+            for (let i = len - 1; i >= 0; i--) {
+                if (nums[i] < nums[i+1]) {
+                    // Swap num 1 with the next large num to its right which is 2
+                    let large = nextLarge(i)
+                    swap(i,large)
+                    // Reverse/sort nums to the right
+                    reverse(i+1)
+                    return
+                }
+            }
+            // 因為是遞增數列，所以從後面比較，只要比 nums[pos] 大的就可以直接回傳
+            function nextLarge(pos) {
+                for (let index = len - 1; index > pos; index--) {
+                    if (nums[index] > nums[pos]) {
+                        return index
+                    }
+                }
+            }
+            function swap(i, j) {
+                [nums[i], nums[j]] = [nums[j], nums[i]] 
+            }
+            // 因為都是遞增數列，所以可以不比對大小直接交換
+            function reverse(pos) {
+                let start = pos, end = len - 1
+                while(start < end) {
+                    swap(start, end)
+                    start++
+                    end--
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

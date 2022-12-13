@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+        var input = [1, 2, 3, 8, 8, 8, 3, 2, 1]
+        var targat = 8
+        console.log("result is ", main(input, targat))
+        console.log("result is ", mainSlow(input, targat))
+        // console.log();
+
+        // 如果 target 有三個，出來的答案會怪怪的
+        function main(nums, target) {
+            let res = []
+            res[0] = findFirst()
+            res[1] = findLast()
+            return res
+
+            function findFirst() {
+                let idx = -1;
+                let start = 0;
+                let end = nums.length - 1;
+
+                while (start <= end) {
+                    const mid = start + Math.floor((end - start) / 2);
+                    if (nums[mid] < target) {
+                        start = mid + 1;
+                    } else {
+                        end = mid - 1;
+                    }
+                    if (nums[mid] === target) idx = mid;
+                }
+                return idx;
+            }
+            function findLast() {
+                let idx = -1;
+                let start = 0;
+                let end = nums.length - 1;
+
+                while (start <= end) {
+                    const mid = start + Math.floor((end - start) / 2);
+                    if (nums[mid] <= target) {
+                        start = mid + 1;
+                    } else {
+                        end = mid - 1;
+                    }
+                    if (nums[mid] === target) idx = mid;
+                }
+                return idx;
+            }
+        }
+
+        // 速度比較慢
+        function mainSlow(nums, target) {
+            if (!nums || nums.length == 0) return [-1, -1];
+            if (nums.length == 1) {
+                if (nums[0] == target) {
+                    return [0, 0];
+                } else {
+                    return [-1, -1];
+                }
+            }
+            let len = nums.length;
+            let first = 0, last = len - 1, center, find = -1;
+            // find targat in array ( position is not important )
+            while (first <= last) {
+                center = Math.floor((first + last) / 2);
+                if (nums[center] == target) {
+                    find = center;
+                    break;
+                } else if (nums[center] > target) {
+                    last = center - 1;
+                } else {
+                    first = center + 1;
+                }
+            }
+            if (find == -1) return [-1, -1];
+            first = find;
+            last = find;
+
+            // find first
+            while (first > 0 && nums[first] == nums[first - 1]) first--;
+            // find last
+            while (last < len - 1 && nums[last] == nums[last + 1]) last++;
+            return [first, last];
+        }
+    </script>
+</body>
+
+</html>

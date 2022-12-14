@@ -18,7 +18,9 @@
         console.log("result is ", main(input, target))
         // console.log();
         function mainRecursion(nums, target) {
+            
             return binarySearch(nums, target, 0, nums.length - 1);
+
             function binarySearch(array, target, start, end) {
                 // If the target is less then the very last item then insert it at that item index
                 // because anything index less then that has already been confirmed to be less then the target.

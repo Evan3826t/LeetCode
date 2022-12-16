@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+        var input = [2,3,6,7]
+        var target = 7
+        console.log("result is ", main(input, target))
+        // console.log();
+        function main(candidates, target) {
+            let result = []
+            let buffer = []
+            search(0, target)
+            return result
+
+            function search(index, target) {
+                if (target === 0) return result.push(buffer.slice())
+                if (target < 0) return
+                // 超過長度的終止條件
+                if (index === candidates.length) return
+                
+                buffer.push(candidates[index])
+                search(index, target - candidates[index])
+                buffer.pop()
+                search(index+1,target)
+            }
+            
+        }
+    </script>
+</body>
+
+</html>

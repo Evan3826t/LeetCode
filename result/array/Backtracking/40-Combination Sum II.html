@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+        var input = [10,1,2,7,6,1,5]
+        // 1,1,2,3,4
+        var target = 8
+        console.log("result is ", main(input, target))
+        // console.log();
+        function main(nums, target) {
+            let result = []
+            let buffer = []
+            nums = nums.sort((a,b) => a - b)
+            search(target, 0, buffer)
+            return result
+
+            function search(target, pos, buffer) {
+                if (target < 0) return
+                if (target === 0) return result.push(buffer.slice())
+
+                for (let index = pos; index < nums.length; index++) {
+                    if (index > pos && nums[index] === nums[index - 1]) continue
+                    buffer.push(nums[index])
+                    search(target - nums[index], index + 1, buffer)
+                    buffer.pop()
+                }
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

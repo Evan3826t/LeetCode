@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+        var input = [1,1,2,1,1]
+        // var input = [5, 6, 4, 4, 6, 9, 4, 4, 7, 4, 4, 8, 2, 6, 8, 1, 5, 9, 6, 5, 2, 7, 9, 7, 9, 6, 9, 4, 1, 6, 8, 8, 4, 4, 2, 0, 3, 8, 5]
+        var target = 1
+        console.log("result is ", main(input))
+        // console.log();
+        function main(nums) {
+            // use greedy algorithm
+            let res = 0
+            let max = 0
+            let curMax = 0
+
+            for (let i = 0; i < nums.length - 1; i++) {
+                // 比較出每一步的最佳解
+                max = Math.max(max, nums[i]+i)
+
+                if (curMax === i) {
+                    res++
+                    curMax = max
+                }
+            }
+            return res;
+        }
+    </script>
+</body>
+
+</html>

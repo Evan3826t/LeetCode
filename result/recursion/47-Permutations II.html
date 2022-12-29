@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+        // var input = [1,1,2]
+        var input = [3,3,0,3]
+        console.log("result is ", main(input))
+        // console.log();
+        function main(nums) {
+            let res = []
+            nums = nums.sort()
+            dfs([], nums);
+            return res;
+
+            function dfs(curr, rest) {
+                if (rest.length === 0) {
+                    res.push(curr);
+                    return;
+                }
+                for (let i = 0; i < rest.length; i++) {
+                    // 重複地跳過，就不會有相同的陣列
+                    if (rest[i] === rest[i-1]) {
+                        continue
+                    }
+
+                    dfs([...curr, rest[i]], [...rest.slice(0, i), ...rest.slice(i + 1)]);
+                    /**
+                     * ex: [1,2,3]
+                     *  [...curr, rest[i]] = [1]    [...rest.slice(0, i), ...rest.slice(i + 1)] = [2,3]
+                     *  [...curr, rest[i]] = [2]    [...rest.slice(0, i), ...rest.slice(i + 1)] = [1,3]
+                     *  [...curr, rest[i]] = [3]    [...rest.slice(0, i), ...rest.slice(i + 1)] = [1,2]
+                    */
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

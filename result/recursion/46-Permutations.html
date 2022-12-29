@@ -33,7 +33,7 @@
             dfs([], nums);
             return res;
 
-            const dfs = (curr, rest) => {
+            function dfs(curr, rest) {
                 // base case. Found a permutation because there's nothing else to explore.
                 if (rest.length === 0) {
                     res.push(curr);

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+        var input = strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
+        console.log("result is ", main(input))
+        // console.log();
+        function main(strs) {
+            const map = new Map();
+
+            for (let str of strs) {
+                // sort string 
+                // eat => aet, ate => aet 
+                // ...str ： eat => e, a, t
+                let curr = [...str].sort().join();
+
+                if (!map.has(curr)) map.set(curr, []);
+                map.get(curr).push(str);
+            }
+
+            return Array.from(map.values());
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+        class ListNode {
+            constructor(data) {
+                this.data = data
+                this.next = null
+            }
+        }
+        
+        let node1 = new ListNode(1)
+        let node2 = new ListNode(2)
+        let node3 = new ListNode(3)
+        let node4 = new ListNode(4)
+        let node5 = new ListNode(5)
+        node1.next = node2
+        node2.next = node3
+        node3.next = node4
+        node4.next = node5
+        var target = 1
+        
+        console.log("result is ", rotateRight(node1, target))
+        // console.log();
+        function rotateRight(head, k) {
+            
+            if (!head || !head.next) {
+                return head
+            }
+
+            let pointer = head;
+            let prevNode = null;
+            let count = 1;
+            // 遍歷一次
+            while (pointer.next) {
+                prevNode = pointer;
+                pointer = pointer.next;
+                count++;
+            }
+            // 確認旋轉次數
+            k = k % count;
+            if (k === 0) {
+                return head;
+            }
+
+            // 尾接到頭
+            prevNode.next = null;
+            pointer.next = head;
+            head = pointer;
+            return rotateRight(head, k - 1);
+        }
+
+    </script>
+</body>
+
+</html>

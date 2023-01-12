@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+        var input = "/home//foo/.."
+        var target = 1 
+        console.log("result is ", main(input, target))
+        // console.log();
+        function main(path) {
+            path = path.split("/")
+            let res = []
+            for (let i = 0; i < path.length; i++) {
+                if (path[i].length > 0) {
+                    if (path[i] == "..") {
+                        res.pop()
+                    }else if(path[i] != "."){
+                        res.push(path[i])
+                    }
+                }
+                
+            }
+            
+            return "/" + res.join('/')
+        }
+    </script>
+</body>
+
+</html>

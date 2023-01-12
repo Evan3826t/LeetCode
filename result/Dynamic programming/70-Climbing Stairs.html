@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+        var input = 44
+        var target = 1 
+        // console.log("result is ", main(input, target))
+        console.log("result is ", DP(input, target))
+        // console.log();
+        // 遞迴
+        function main(n) {
+            let res = 0
+            dfs(0,1)
+            dfs(0,2)
+
+            function dfs(pos, step) {
+                pos += step
+                if (pos == n) {
+                    return res++
+                }
+                if (pos > n) {
+                    return
+                }
+                dfs(pos, 1)
+                dfs(pos, 2)
+            }
+            return res
+        }
+
+        // 動態規劃法
+        function DP(n) {
+            // n = 1 step = 1
+            // n = 2 step = 2
+            w = [0,1,2]
+            for (let i = 3; i <= n; i++) {
+                w[i] = w[i-1] + w[i-2]
+            }
+            // console.log(w)
+            return w[n]
+        }
+    </script>
+</body>
+
+</html>

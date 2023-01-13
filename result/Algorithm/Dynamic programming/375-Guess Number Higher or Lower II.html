@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+        var input = 10
+        var target = 1 
+        console.log("result is ", main(input, target))
+        // console.log();
+        function main(n) {
+            let dp = new Array(n + 1).fill(0).map(x => new Array(n + 1).fill(null));
+            return recurse(dp, 1, n);
+
+            function recurse(dp, row, col) {
+                if (row >= col) {
+                    return 0
+                }
+
+                if (dp[row][col] !== null) {
+                    return dp[row][col];
+                }
+
+                // init dp[row][col]
+                dp[row][col] = Number.MAX_VALUE;
+                
+                for (let i = row; i <= col; i++) {
+                    // money([1,n]) = x + max(money[1,x-1],money[x+1,n])
+                    dp[row][col] = Math.min(
+                        dp[row][col], 
+                        Math.max(recurse(dp, row, i - 1), recurse(dp, i + 1, col)) + i
+                    );
+                };
+                return dp[row][col];
+            }
+        }
+    </script>
+</body>
+
+</html>

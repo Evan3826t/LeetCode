@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+        var input = [1, 2, 5]
+        var target = 11
+        console.log("result is ", main(input, target))
+        // console.log();
+        function main(coins, amount) {
+            const dp = Array(amount + 1).fill(Infinity);
+            dp[0] = 0;
+
+            for (let i = 1; i < dp.length; i++) {
+                for (let coin of coins) {
+                    // dp[i - coin] + 1 
+                    // 假設 coin = 5塊, i = 剩下的金額, +1 = 換一個五塊
+                    // dp[amount - 5] + 1
+                    if (i - coin >= 0) dp[i] = Math.min(dp[i], dp[i - coin] + 1);
+                }
+            }
+            return dp[amount] === Infinity ? -1 : dp[amount];
+        }
+    </script>
+</body>
+
+</html>

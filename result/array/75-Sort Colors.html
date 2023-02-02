@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+        var input = [2, 0, 2, 1, 1, 0]
+        var target = 1
+        console.log("brute force checking result is ", main(input, target))
+        console.log("One pass algorithm result is ", onePass(input, target))
+
+        // console.log();
+
+        function onePass(nums) {
+            let low = 0, mid = 0, high = nums.length - 1
+
+            while (mid <= high) {
+
+                if (nums[mid] == 0) {
+                    swap(low, mid);
+                    mid++;
+                    low++;
+                } else if (nums[mid] == 1) {
+                    mid++;
+                } else if (nums[mid] == 2) {
+                    // 把２丟到最後
+                    swap(mid, high);
+                    high--
+                }
+            }
+
+            function swap(a, b) {
+                [nums[b], nums[a]] = [nums[a], nums[b]]
+            }
+        }
+
+        // brute force checking
+        function main(nums) {
+            let zero = 0, one = 0, len = nums.length;
+            for (let i = 0; i < len; i++) {
+                if (nums[i] == 0) zero++;
+                if (nums[i] == 1) one++;
+            }
+
+            for (let i = 1; i <= zero; i++) {
+                nums[i - 1] = 0;
+            }
+            for (let i = 1; i <= one; i++) {
+                nums[zero + i - 1] = 1;
+            }
+            for (let i = 1; i <= (len - one - zero); i++) {
+                nums[zero + one + i - 1] = 2;
+            }
+        }
+    </script>
+</body>
+
+</html>

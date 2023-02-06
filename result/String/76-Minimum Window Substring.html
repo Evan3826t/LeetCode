@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+        var input = 'ADOBECODEBANC'
+        var target = "ABC"
+        console.log("result is ", main(input, target))
+        // console.log();
+        function main(s, t) {
+            if (t.length > s.length) return '';
+
+            const neededChars = {};
+
+            for (let char of t) {
+                // {A:1, B:1, C:1}
+                neededChars[char] = (neededChars[char] || 0) + 1;
+            }
+
+            let left = 0;
+            let right = 0;
+            let neededLength = Object.keys(neededChars).length;
+            let substring = '';
+
+            while (right < s.length) {
+                const rightChar = s[right];
+                
+                neededChars[rightChar]--;
+                
+                if (neededChars[rightChar] === 0) neededLength--;
+                while (neededLength === 0) {
+                    // 湊齊 ABC 後會進入，進入後會檢查內容，進行瘦身
+                    //1. ADOBEC 第一次進來，無法瘦身，跳出此迴圈
+                    //2. DOBECODEBA 可以進行瘦身後跳出迴圈
+                    // 2-1 OBECODEBA
+                    // 2-2 BECODEBA
+                    // 2-3 ECODEBA
+                    // 2-4 CODEBA
+                    console.log(s.slice(left, right + 1), right);
+                    if (!substring || substring.length > right - left + 1) {
+                        substring = s.slice(left, right + 1);
+                        // console.log(substring);
+                    }
+
+                    const leftChar = s[left];
+                    // If the leftChar in charMap is at exactly 0 before being 
+                    // incremented, we now need more leftChars so that its count
+                    // in charMap goes down to exactly 0
+                    if (neededChars[leftChar] === 0) {
+                        neededLength++;
+                    }
+                    neededChars[leftChar]++;
+                    left++;
+                }
+                right++;
+            }
+
+            return substring;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+        var input = [["a","b"]]
+        var target = "ba"
+        console.log("result is ", main(input, target))
+        // console.log();
+        function main(board, word) {
+            let i = 0, res = false;
+            if (board[0][0] == word) {
+                return true;
+            }
+            while (i < board.length) {
+                let j = 0;
+                while (j < board[0].length) {
+                    if (DFS(board, j, i, 0)) return true
+                    j++;
+                }
+                i++;
+            }
+
+            return res;
+
+            function DFS(board, row, col, pos) {
+                if (pos === word.length) {
+                    res = true;
+                    return;
+                }
+
+                // out of range
+                if (row >= board[0].length || col >= board.length || row < 0 || col < 0) {
+                    return; 
+                }
+
+
+                if (board[col][row] == word[pos]) {
+                    // 走過來的地方改成#，避免走原路回去
+                    board[col][row] = "#";
+                    DFS(board, row + 1, col, pos+1);
+                    DFS(board, row - 1, col, pos+1);
+                    DFS(board, row, col + 1, pos+1);
+                    DFS(board, row, col - 1, pos+1);
+                    
+                    board[col][row] = word[pos]
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

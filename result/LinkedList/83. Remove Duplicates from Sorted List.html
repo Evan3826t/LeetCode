@@ -17,25 +17,14 @@
                 this.next = null
             }
         }
-
+        // input: [1,1,2]
+        // ans: [1,2]
         let node1 = new ListNode(1)
-        let node2 = new ListNode(2)
-        let node3 = new ListNode(3)
-        let node4 = new ListNode(3)
-        let node5 = new ListNode(4)
-        let node6 = new ListNode(4)
-        let node7 = new ListNode(5)
+        let node2 = new ListNode(1)
+        let node3 = new ListNode(2)
         node1.next = node2
         node2.next = node3
-        node3.next = node4
-        node4.next = node5
-        node5.next = node6
-        node6.next = node7
         var target = 1
-
-        // input: [1,1,2]
-        // ans: [2]
-
 
         console.log("result is ", deleteDuplicates(node1, target))
         // console.log();
@@ -44,24 +33,17 @@
                 return head;
             }
             // create a tmp node that acts like a head of list pointing to the orignal nead
-            let tmp = new ListNode();
-            let duplicate = 0;
-            tmp.next = head;
-
+            let tmp = head;
             let curr = tmp;
 
-            while (curr.next != null && curr.next.next != null) {
-                if (curr.next.val == curr.next.next.val) {
-                    duplicate = curr.next.val;
-                    // if the next node of curr is not null and its value is eual to the duplicate value
-                    while (curr.next != null && curr.next.val == duplicate) {
-                        curr.next = curr.next.next
-                    }
+            while (curr.next != null) {
+                if (curr.val == curr.next.val) {
+                    curr.next = curr.next.next
                 } else {
                     curr = curr.next;
                 }
             }
-            return tmp.next;
+            return tmp;
         }
 
     </script>

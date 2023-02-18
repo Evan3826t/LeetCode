@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+        var nums1 = [1,2,3,0,0,0]
+        var nums2 = [2,5,6]
+        var m = 3 
+        var n = 3 
+        console.log("result is ", main(nums1, m, nums2, n))
+        // console.log();
+        function main(nums1, m, nums2, n) {
+            let i = m - 1;
+            let j = n - 1;
+            let k = m + n - 1;
+            while (i >= 0 && j >= 0) {
+                if (nums1[i] > nums2[j]) {
+                    nums1[k--] = nums1[i--];
+                } else {
+                    nums1[k--] = nums2[j--]
+                }
+            }
+            while (i >= 0) {
+                nums1[k--] = nums1[i--];
+            }
+            while (j >= 0) {
+                nums1[k--] = nums2[j--];
+            }
+        }
+    </script>
+</body>
+
+</html>

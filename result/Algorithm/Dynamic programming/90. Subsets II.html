@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+        var input = [4,4,4,1,4]
+        var target = 1
+        console.log("result is ", main(input, target))
+        // console.log();
+        function main(nums) {
+            let res = [];
+            nums = nums.sort();
+            dfs(nums,[]);
+
+            return res;
+            function dfs(rest, curr) {
+                res.push(curr)
+                for (let i = 0; i < rest.length; i++) {
+                    if (i == 0 || rest[i] != rest[i-1]) {
+                        dfs(rest.slice(i+1), [...curr,rest[i]]);
+                    }
+                }
+            }
+
+        }
+    </script>
+</body>
+
+</html>

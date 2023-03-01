@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+
+        var input = 3
+
+        console.log("result is ", numTrees(input))
+        // console.log();
+        /**
+         *                                                 n = 5 => 
+         *      
+         *                   1               2               3               4               5       
+         *                 /   \           /   \           /   \           /   \           /   \     
+         *              0 sub   4 sub   1 sub   3 sub   2 sub   2 sub   3 sub   1 sub   4 sub   0 sub
+         *  幾種組合     sol[0]*sol[4]   sol[1]*sol[3]   sol[2]*sol[2]   sol[3]*sol[1]   sol[4]*sol[0]
+         * 
+         * sol[5] = sol[0]*sol[4] + sol[1]*sol[3] + sol[2]*sol[2] + sol[3]*sol[1] + sol[4]*sol[0]
+         */
+        function numTrees(n) {
+            let sol = [1, 1];
+
+            for (let i = 2; i <= n; i++) {
+                // init
+                sol[i] = 0;
+
+                for (let j = 1; j <= i; j++) {
+                    sol[i] += sol[i - j] * sol[j - 1];
+                }
+
+            }
+            return sol[n];
+        }
+
+
+
+
+
+    </script>
+</body>
+
+</html>

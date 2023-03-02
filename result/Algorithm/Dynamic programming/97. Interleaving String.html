@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+        let s1 = "aabcc", s2 = "dbbca", s3 = "aadbbcbcac"
+
+        // Time Limit Exceeded
+        console.log("result is ", main(s1, s2, s3))
+        console.log("result is ", isInterleave(s1, s2, s3))
+        // console.log();
+        function main(s1, s2, s3) {
+
+            if (s3.length != s1.length + s2.length) return false;
+
+            let dp = new Array(s1.length + 1).fill(0).map(x => new Array(s2.length + 1).fill(false))
+
+            dfs(0, 0);
+            return dp[s1.length][s2.length];
+
+            function dfs(i, j) {
+                if (i == s1.length && j == s2.length) {
+                    return dp[i][j] = true;
+                }
+
+                if (i < s1.length && s1[i] == s3[i + j]) {
+                    dfs(i + 1, j);
+                }
+
+                if (j < s2.length && s2[j] == s3[i + j]) {
+                    dfs(i, j + 1);
+                }
+            }
+
+        }
+
+        function isInterleave(s1, s2, s3) {
+            const dp = new Map();
+
+            function solve(a, b ,c) {
+                if (c == s3.length) return a == s1.length && b == s2.length;
+                const key = [a, b, c].join(':');
+
+                if (dp.has(key)) {
+                    // console.log('hit');
+                    return dp.get(key);
+                }
+
+                let takeS1 = false, takeS2 = false;
+                if (s1[a] == s3[c]) takeS1 = solve(a + 1, b, c + 1);
+                if (s2[b] == s3[c]) takeS2 = solve(a, b + 1, c + 1);
+
+                dp.set(key, takeS1 || takeS2);
+                return takeS1 || takeS2;
+            }
+            
+            return solve(0,0,0);
+        };
+
+    </script>
+</body>
+
+</html>

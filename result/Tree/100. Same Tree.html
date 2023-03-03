@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+        var input = [1, 2, 3]
+        var target = 1
+        console.log("result is ", main(input, target))
+        // console.log();
+        function main(p, q) {
+
+            return dfs(p, q);
+
+            function dfs(p, q) {
+                if (p == null || q == null) {
+                    if (p != null || q != null) {
+                        return false;
+                    }
+                    return true;
+                }
+                if (p.val != q.val) {
+                    return false
+                }
+                return dfs(p.left, q.left) && dfs(p.right, q.right);
+
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+        class TreeNode {
+            constructor(val, left = null, right = null) {
+                this.val = val
+                this.left = left
+                this.right = right
+            }
+        }
+
+        class Tree {
+            constructor() {
+                this.root = null
+            };
+        }
+
+        // [1, null, 2, 3]
+        let n1 = new TreeNode(2);
+        let n2 = new TreeNode(1);
+        let n3 = new TreeNode(3);
+
+        let tree = new Tree();
+        tree.root = n1
+
+        n1.left = n2;
+        n1.right = n3
+
+        console.log("result is ", isValidBST(n1))
+        // console.log();
+        function isValidBST(root, max = Infinity, min = -Infinity) {
+
+            if (root == null) return true
+            console.log(root.val, max, min)
+            if (root.val >= max || root.val <= min) return false
+
+            return isValidBST(root.left, root.val, min) && isValidBST(root.right, max, root.val);
+        };
+    </script>
+</body>
+
+</html>

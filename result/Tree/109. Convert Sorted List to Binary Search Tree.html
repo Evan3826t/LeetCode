@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+        class TreeNode {
+            constructor(val, left = null, right = null) {
+                this.val = val
+                this.left = left
+                this.right = right
+            }
+        }
+
+        class Tree {
+            constructor() {
+                this.root = null
+            };
+        }
+
+        class ListNode {
+            constructor(val) {
+                this.val = val
+                this.next = null
+            }
+        }
+        
+        let node1 = new ListNode(-10)
+        let node2 = new ListNode(-3)
+        let node3 = new ListNode(0)
+        let node4 = new ListNode(5)
+        let node5 = new ListNode(9)
+        node1.next = node2
+        node2.next = node3
+        node3.next = node4
+        node4.next = node5
+
+        console.log("result is ", sortedListToBST(node1))
+
+        // console.log();
+        function sortedListToBST(head) {
+
+            let count = 0;
+            let curr = head;
+            while (curr) {
+                curr = curr.next;
+                count++;
+            }
+
+            curr = head;
+            return build(1, count);
+
+            function build(start, end) {
+                if (start > end) {
+                    return null;
+                }
+                let node = new TreeNode();
+                let mid = Math.floor((start + end) / 2);
+                // 會先找到最左下角的值，等於 linked list 的第一個值
+                node.left = build(start, mid - 1);
+                node.val = curr.val;
+                curr = curr.next;
+                node.right = build(mid + 1, end)
+                return node
+            }
+        };
+
+    </script>
+</body>
+
+</html>

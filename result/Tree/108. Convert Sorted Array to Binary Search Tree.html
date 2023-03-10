@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+        class TreeNode {
+            constructor(val, left = null, right = null) {
+                this.val = val
+                this.left = left
+                this.right = right
+            }
+        }
+
+        class Tree {
+            constructor() {
+                this.root = null
+            };
+        }
+
+        let nums = [-10, -3, 0, 5, 9]
+
+        console.log("result is ", sortedArrayToBST(nums))
+
+        // console.log();
+        function sortedArrayToBST(nums) {
+
+            return build(0, nums.length - 1);
+
+            function build(start, end) {
+                if (start > end) {
+                    return null;
+                }
+
+                let mid = Math.floor((start + end) / 2)
+                let node = new TreeNode(nums[mid]);
+                node.left = build(start, mid - 1);
+                node.right = build(mid + 1, end);
+
+                return node;
+            }
+        };
+
+    </script>
+</body>
+
+</html>

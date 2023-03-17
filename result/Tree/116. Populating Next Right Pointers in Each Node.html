@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+        class TreeNode {
+            constructor(val, left = null, right = null) {
+                this.val = val
+                this.left = left
+                this.right = right
+            }
+        }
+
+        class Tree {
+            constructor() {
+                this.root = null
+            };
+        }
+
+        // [1, null, 2, 3]
+        let n1 = new TreeNode(2);
+        let n2 = new TreeNode(1);
+        let n3 = new TreeNode(3);
+
+        let tree = new Tree();
+        tree.root = n1
+
+        n1.left = n2;
+        n1.right = n3
+
+        let target = 3;
+        console.log("result is ", connect(n1, target))
+        // console.log()
+
+        function connect(root, target) {
+            let q = [root];
+
+            while (q[0]) {
+                let len = q.length;
+                for (let i = 0; i < len; i++) {
+                    let node = q.shift();
+                    // 判定最後一個node，補上 null
+                    node.next = (i < len-1)?q[0]:null;
+                    if (node.left) {
+                        q.push(node.left);
+                        q.push(node.right);
+                    }
+                }
+            }
+            return root;
+        }
+    </script>
+</body>
+
+</html>  

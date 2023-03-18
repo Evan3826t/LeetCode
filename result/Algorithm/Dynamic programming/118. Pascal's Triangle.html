@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+        var input = 5
+
+        console.log("result is ", main(input))
+        // console.log();
+        function main(nums) {
+            let res = [];
+
+            for (let i = 0; i < numRows; i++) {
+                let row = [];
+                for (let j = 0; j <= i; j++) {
+                    if (i < 2 || j < 1) {
+                        row.push(1)
+                    } else {
+                        let topLeft = (res[i-1][j-1])?res[i-1][j-1]:0;
+                        let toprRight = (res[i-1][j])?res[i-1][j]:0;
+                        row.push(topLeft + toprRight);
+                    }
+                    
+                }
+                res.push(row)
+                
+            }
+            return res;
+        }
+    </script>
+</body>
+
+</html>

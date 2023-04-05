@@ -11,23 +11,11 @@
 <body style="background-color: black;color:aliceblue">
     <h1>test</h1>
     <script>
-        var input = 3
+        var input = ;
         console.log("result is ", main(input))
         // console.log();
-        function main(rowIndex) {
-            let res = [];
-            for (let i = 0; i <= rowIndex; i++) {
-                let row = [];
-                for (let j = 0; j <= i; j++) {
-                    if (i <= 1 || j == 0 || j == i) {
-                        row.push(1);
-                    } else {
-                        row.push(res[i-1][j]+res[i-1][j-1]);
-                    }
-                }
-                res.push(row);
-            }
-            return res[rowIndex];
+        function main(input) {
+            
         }
     </script>
 </body>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+        var input = [7,1,5,3,6,4];
+        console.log("result is ", main(input))
+        // console.log();
+        function main(prices) {
+            let profit = 0;
+            for (let i = 1; i < prices.length; i++) {
+                // 低買高賣，只要有價差就賣掉．如果後天還是漲，一樣明天買後天賣
+                // ex 1 2 3
+                // 2 - 1 + 3 - 2 = 2
+                // 3 - 1 = 2
+                // 兩個結果是一樣的
+                if (prices[i] > prices[i-1]) {
+                   profit +=  prices[i] - prices[i-1];
+                }
+            }
+            return profit;
+        }
+    </script>
+</body>
+
+</html>

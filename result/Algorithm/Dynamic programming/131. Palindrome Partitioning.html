@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+        var input = "aab";
+        console.log("result is ", main(input))
+        // console.log();
+        function main(s) {
+            let n = s.length
+            let dp = new Array(n)
+            for (let i = 0; i < n; i++) {
+                dp[i] = new Array()
+            }
+
+            let res = []
+            let dfs = function (start, curList) {
+                if (start == n) res.push([...curList])
+                for (let end = start; end < n; end++) {
+
+                    // aabaa
+                    // 1. if palindrome s[0] == s[4] => a
+                    // 2. abc => end - start <= 2
+                    //    123 => 3-1 = 2
+                    // 3. dp[start + 1][end - 1] => 中間的 aba
+                    if (s[start] == s[end] && (end - start <= 2 || dp[start + 1][end - 1])) {
+                        dp[start][end] = true
+                        curList.push(s.slice(start, end + 1))
+                        // 往後推一個字母，看是不是回文
+                        dfs(end + 1, curList)
+                        curList.pop(curList)
+                    }
+                }
+            }
+            dfs(0, [])
+            return res
+        }
+    </script>
+</body>
+
+</html>

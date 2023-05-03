@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode</title>
+</head>
+
+<body style="background-color: black;color:aliceblue">
+    <h1>test</h1>
+    <script>
+        var input = [1,2,3,4,5];
+        var cost = [3,4,5,1,2];
+        console.log("result is ", main(input, cost))
+        // console.log();
+        function main(gas, cost) {
+            let sum = 0;
+            let sum_total = 0;
+            let start = 0;
+            for (let i = 0; i < gas.length; i++) {
+                sum_total = sum_total - cost[i] + gas[i];
+                sum = sum - cost[i] + gas[i];
+
+                if (sum < 0) {
+                    start = i + 1;
+                    sum = 0;
+                }
+            }
+            // sum_total < 0 代表沒辦法繞完
+            return (sum_total >= 0) ? start : -1;
+        }
+    </script>
+</body>
+
+</html>
